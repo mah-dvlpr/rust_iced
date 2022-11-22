@@ -15,16 +15,8 @@ mod app {
     use super::*;
 
     /// Global (application) state.
-    pub struct State {
+    struct State {
         page: page::State,
-    }
-
-    impl State {
-        fn new() -> Self {
-            State {
-                page: page::State::new(),
-            }
-        }
     }
 
     impl Sandbox for State {
@@ -45,7 +37,12 @@ mod app {
         }
 
         fn view(&self) -> Element<'_, Self::Message> {
-            todo!()
+            // let Self { page, .. } = self;
+
+            // let content: Element<_> = column![
+
+            // ]
+            todo!();
         }
     }
 
