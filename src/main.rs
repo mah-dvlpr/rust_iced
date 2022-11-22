@@ -15,7 +15,7 @@ mod app {
     use super::*;
 
     /// Global (application) state.
-    struct State {
+    pub struct State {
         page: page::State,
     }
 
