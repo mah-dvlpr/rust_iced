@@ -1,10 +1,10 @@
 use iced::alignment;
 use iced::theme;
 use iced::widget::{
-    checkbox, column, container, horizontal_space, image, radio, row, scrollable, slider, text,
+    button, checkbox, column, container, horizontal_space, image, radio, row, scrollable, slider, text,
     text_input, toggler, vertical_space,
 };
-use iced::widget::{Button, Column, Container, Slider};
+// use iced::widget::{Button, Column, Container, Slider};
 use iced::{Color, Element, Length, Renderer, Sandbox, Settings};
 
 fn main() -> iced::Result {
@@ -16,7 +16,7 @@ mod app {
 
     /// Global (application) state.
     pub struct State {
-        page: page::State,
+        page: pages::State,
     }
 
     impl Sandbox for State {
@@ -24,7 +24,7 @@ mod app {
 
         fn new() -> Self {
             Self {
-                page: app::page::State::new(),
+                page: pages::State::new(),
             }
         }
 
@@ -37,12 +37,15 @@ mod app {
         }
 
         fn view(&self) -> Element<'_, Self::Message> {
-            // let Self { page, .. } = self;
+            let Self { page } = self;
 
-            // let content: Element<_> = column![
+            let mut widgets = row![
+                button(text("hej").horizontal_alignment(
+                    alignment::Horizontal::Center
+                ),).padding(12).width(Length::Units(100))
+            ];
 
-            // ]
-            todo!();
+            container(widgets).height(Length::Fill).center_y().into()
         }
     }
 
@@ -51,11 +54,11 @@ mod app {
     pub enum Message {
         BackPressed,
         NextPressed,
-        PageMessage(page::Message),
+        PageMessage(pages::Message),
     }
 
     /// Modularized pages.
-    pub mod page {
+    pub mod pages {
         // Per page state(s).
         pub struct State {
             pages: Vec<Type>,
